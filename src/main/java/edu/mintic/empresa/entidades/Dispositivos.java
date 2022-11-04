@@ -1,13 +1,19 @@
 package edu.mintic.empresa.entidades;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Dispositivos {
     
-    private int idDispositivo;
+    private @Id @GeneratedValue int idDispositivo;
     private String nombre;
     private String referencia;
+    @ManyToOne
+    @JoinColumn(name = "idEmpleado")
     private Empleado empleado;
 
     

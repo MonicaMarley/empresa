@@ -2,13 +2,14 @@ package edu.mintic.empresa.controladores;
 
 import java.util.List;
 
-//import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.mintic.empresa.entidades.Empleado;
@@ -27,7 +28,18 @@ public class EmpleadoController {
     public List<Empleado> ListarEmpleados(){
         return repository.findAll();
     }
-    //flata crear un getMapping solo con empleado hora 9:09
+    @GetMapping("/empleados")
+    public Empleado getEmpleado(@RequestParam(name = "idEmpleado",required = false, defaultValue = "1") long id){
+        return repository.findById(id).orElseThrow();
+    }
+    /* otra forma
+     @GetMapping("/empleado")
+    public Empleado getEmpleado(@RequestParam(name = "idEmpleado") Optional<Long> id) {
+        long idEmpleado = id.orElseGet(() -> 1L);
+        return repository.findById(idEmpleado).orElseThrow();
+    }
+     */
+    
     //crear recursos
     @PostMapping("/empleado")
     public Empleado crearEmpleado(@RequestBody Empleado empleado){
@@ -47,10 +59,10 @@ public class EmpleadoController {
     public Empleado actualizacionParcialEmpleado(@RequestBody Empleado empleado, @PathVariable long idEmpleado){
         repository
     }*/
-    /*@DeleteMapping("/empleado/{idEmpleado}")
+    @DeleteMapping("/empleado/{idEmpleado}")
     public void elimiarEmpleado(@PathVariable long idEmpleado){
-        repository.findAll();
-    }*/
+        repository.deleteById(idEmpleado);
+    }
 
 
 }
