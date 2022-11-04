@@ -5,7 +5,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
+//@Table(name = "tbl_empleado") para poder nombrar la clase diferente a la tabla
+
 public class Empleado {
+    
+    //@Column(name = "id_empleado") para nombrar la columna diferente a los atributos
 
     private @Id @GeneratedValue long idEmpleado;
     private String nombre;
