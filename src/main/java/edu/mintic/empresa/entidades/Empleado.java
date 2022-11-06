@@ -10,92 +10,83 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-//@Table(name = "tbl_empleado") //para poder nombrar la clase diferente a la tabla
-
+//@Table(name = "tbl_empleado")
 public class Empleado {
-    
-    //@Column(name = "id_empleado") //para nombrar la columna diferente a los atributos
 
+    //@Column(name = "id_empleado")
     private @Id @GeneratedValue long idEmpleado;
     private String nombre;
     private String apellido;
     private double salario;
     private String cargo;
     @OneToMany(mappedBy = "empleado")
-    private List<Dispositivos> dispositivos;
-    
+    private List<Dispositivo> dispositivos;
+
     public Empleado() {
     }
 
-    public Empleado(String nombre, String apellido, double salario, String cargo,List<Dispositivos> dispositivos) {
+    public Empleado(String nombre, String apellido, double salario, String cargo, List<Dispositivo> dispositivos) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.salario = salario;
         this.cargo = cargo;
         this.dispositivos = dispositivos;
-    }
-
-    public long getIdEmpleado() {
-        return idEmpleado;
-    }
-
-    public void setIdEmpleado(long idEmpleado) {
-        this.idEmpleado = idEmpleado;
-    }
-
-    public String getNombre() {
-        return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getNombre() {
+        return this.nombre;
     }
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
+    public String getApellido() {
+        return this.apellido;
+    }
+
+    public String getCargo() {
+        return this.cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
     public double getSalario() {
-        return salario;
+        return this.salario;
     }
 
     public void setSalario(double salario) {
         this.salario = salario;
     }
 
-    public String getCargo() {
-        return cargo;
+    public long getIdEmpleado() {
+        return this.idEmpleado;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }   
+    public void setIdEmpleado(long idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
 
-
-
-    @Override
     public String toString() {
-        return "Empleado [idEmpleado=" + "\n"
-                + idEmpleado + ", nombre=" + "\n"
-                + nombre + ", apellido=" + "\n"
-                + apellido + ", salario=" + "\n"
-                + salario + ", cargo=" + "\n"
-                + cargo + "]";
+        return "idEmpleado: " + idEmpleado + "\n"
+                + "nombre: " + nombre + "\n"
+                + "apellido: " + apellido + "\n"
+                + "cargo: " + cargo + "\n"
+                + "salario: " + salario + "\n";
     }
 
-    public List<Dispositivos> getDispositivos() {
+    public List<Dispositivo> getDispositivos() {
         return dispositivos;
     }
 
-    public void setDispositivos(List<Dispositivos> dispositivos) {
+    public void setDispositivos(List<Dispositivo> dispositivos) {
         this.dispositivos = dispositivos;
     }
-      
-    
-
 
 }
